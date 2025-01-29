@@ -1,79 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/output.css">
-  <title>Sign-Up</title>
-</head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-  <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
-    <h1 class="text-2xl font-bold text-center mb-6">Sign Up</h1>
-    <form action="" method="POST" class="flex flex-col space-y-4">
-      <div>
-        <label for="firstname" class="block text-sm font-medium text-gray-700">First Name</label>
-        <input 
-          id="firstname" 
-          name="firstname" 
-          type="text" 
-          placeholder="First Name" 
-          class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-        />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/output.css" />
+    <title>Sign-Up</title>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+      <h1 class="text-2xl font-bold text-center mb-6">Sign Up</h1>
+      <form action="" method="POST" class="flex flex-col space-y-4">
+        <div>
+          <label for="firstname" class="block text-sm font-medium text-gray-700"
+            >First Name</label
+          >
+          <input
+            id="firstname"
+            name="firstname"
+            type="text"
+            placeholder="First Name"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div>
+          <label for="lastname" class="block text-sm font-medium text-gray-700"
+            >Last Name</label
+          >
+          <input
+            id="lastname"
+            name="lastname"
+            type="text"
+            placeholder="Last Name"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700"
+            >Email</label
+          >
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Email"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          />
+         
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700"
+            >Password</label
+          >
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Password"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            oninput="validatePassword()"
+          />
+        </div>
+        <div>
+          <label
+            for="confirmPassword"
+            class="block text-sm font-medium text-gray-700"
+            >Confirm Password</label
+          >
+          <input
+            id="confirmPassword"
+            name="confirmpassword"
+            type="password"
+            placeholder="Confirm Password"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            oninput="validatePassword()"
+          />
+          <p id="passwordError" class="text-red-500 text-sm mt-1 hidden">
+            Passwords do not match
+          </p>
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all"
+          id="submitButton"
+          disabled
+        >
+          Sign Up
+        </button>
+      </form>
+      <div class="text-center mt-6">
+        <p class="text-sm text-gray-600">Already a user?</p>
+        <a
+          href="/login"
+          class="text-blue-500 hover:underline font-medium mt-2 inline-block"
+        >
+          Login
+        </a>
       </div>
-      <div>
-        <label for="lastname" class="block text-sm font-medium text-gray-700">Last Name</label>
-        <input 
-          id="lastname" 
-          name="lastname" 
-          type="text" 
-          placeholder="Last Name" 
-          class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-        />
-      </div>
-      <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-        <input 
-          id="email" 
-          name="email" 
-          type="email" 
-          placeholder="Email" 
-          class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-        />
-      </div>
-      <div>
-        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-        <input 
-          id="password" 
-          name="password" 
-          type="password" 
-          placeholder="Password" 
-          class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-        />
-      </div>
-      <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-      <input 
-        id="confirmPassword" 
-        name="confirmpassword" 
-        type="password" 
-        placeholder="Confirm Password" 
-        class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-      />
-      <button 
-        type="submit" 
-        class="w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all"
-      >
-        Sign Up
-      </button>
-    </form>
-    <div class="text-center mt-6">
-      <p class="text-sm text-gray-600">Already a user?</p>
-      <a 
-        href="/login" 
-        class="text-blue-500 hover:underline font-medium mt-2 inline-block"
-      >
-        Login
-      </a>
     </div>
-  </div>
-</body>
+
+    <script>
+      function validatePassword() {
+        const password = document.getElementById('password').value;
+        const confirmPassword =
+          document.getElementById('confirmPassword').value;
+        const errorText = document.getElementById('passwordError');
+        const submitButton = document.getElementById('submitButton');
+
+        if (password === confirmPassword && password.length > 0) {
+          errorText.classList.add('hidden');
+          submitButton.disabled = false;
+        } else {
+          errorText.classList.remove('hidden');
+          submitButton.disabled = true;
+        }
+      }
+    </script>
+  </body>
 </html>

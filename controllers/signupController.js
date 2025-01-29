@@ -17,7 +17,6 @@ export const signUp = async (req, res) => {
                 ) `,
       values
     );
-    console.log(result.rows);
     res.send('form submitted correctly.');
   } catch (error) {
     console.error('Error signing up the user.', error);

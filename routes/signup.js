@@ -15,6 +15,7 @@ signupRouter.post(
     const user = users[0];
     console.log(user);
     if (user) {
+
       throw new Error('Email is already in use. Please use another.');
     }
   }),
