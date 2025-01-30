@@ -44,8 +44,10 @@ console.log(secret)
 // const message = await db(`INSERT INTO secret (secret) VALUES ($1)`, values)
 // console.log(message.rows) 
 // const query = `DROP TABLE users`;
-const users = await db(`SELECT * FROM secret`)
-console.log(users.rows)
+// const users = await db(`UPDATE users SET isadmin = false WHERE id != 12`) 
+// console.log(users.rows)
+const userss = await db(`SELECT * FROM users`) 
+console.log(userss.rows)
 // const queries = await db(query);
 // const messages = await db(message);
 // const values = ['This is the text messages.', new Date()]
