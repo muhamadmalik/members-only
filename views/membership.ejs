@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Membership Form</title>
+</head>
+<body>
+    <% if (message) { %>
+        <div class="<%= message?.type %>">
+            <%= message?.text %>
+        </div>
+    <% } %>
+    <form action="/membership" method="POST">
+        <label for="secret">Secret Code:</label>
+        <input type="text" id="secret" name="secret" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

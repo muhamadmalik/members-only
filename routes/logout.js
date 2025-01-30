@@ -10,4 +10,4 @@ logoutRouter.get('/', (req, res, next) => {
   });
 });
 
-export default logoutRouter 
+export default logoutRouter

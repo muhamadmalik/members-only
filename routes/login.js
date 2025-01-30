@@ -15,8 +15,8 @@ passport.use(
         const result = await db(`SELECT * FROM users WHERE email = $1`, values);
         const users = result.rows;
         const user = users[0];
-        console.log('this is being executed.');
-        console.log(user);
+        // console.log('this is being executed.');
+        // console.log(user);
         const match = await bcrypt.compare(password, user.password);
         if (!users) {
           return done(null, false, {
@@ -28,7 +28,7 @@ passport.use(
             message: 'The password is Incorrect, Please try again.',
           });
         }
-        console.log('authentication successfull.');
+        // console.log('authentication successfull.');
         return done(null, user);
       } catch (error) {
         console.error('Error during authentication:', error);
@@ -40,7 +40,7 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  console.log('Serializing user:', user.id);
+  // console.log('Serializing user:', user.id);
   done(null, user.id);
 });
 passport.deserializeUser(async (id, done) => {
@@ -49,10 +49,10 @@ passport.deserializeUser(async (id, done) => {
     const result = await db(`SELECT * FROM users WHERE id = $1`, values);
     const users = result.rows;
     const user = users[0];
-    console.log('Deserialized user:', user);
+    // console.log('Deserialized user:', user);
     done(null, user);
   } catch (error) {
-    console.error('Error during deserialization:', error);
+    // console.error('Error during deserialization:', error);
     return done(error);
   }
 });

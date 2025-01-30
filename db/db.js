@@ -1,6 +1,6 @@
 import pg from 'pg';
 import 'dotenv/config';
-
+import bcrypt from 'bcrypt'
 const { Pool } = pg;
 
 const pool = new Pool({
@@ -20,20 +20,35 @@ const db = async (query, params) => {
     throw error;
   }
 };
+
 // const table = await db(`CREATE DATABASE users`);
-// const query = `CREATE TABLE messages  (
+// const query = await db(`CREATE TABLE messages  (
 //     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 //     message TEXT,
-//     date TIMESTAMP)
-//     `;
-// const query = `DELETE FROM users WHERE id = 0`;
-const message = `SELECT * FROM messages`;
+//     date TIMESTAMP,
+//     user_id INT)
+//     `);
+// const query = await db(`CREATE TABLE secret (
+//     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+//     secret TEXT)
+//     `);
+// const query = `DELETE FROM messages`;
+// const message = await db(`DELETE FROM secret WHERE id != 14`)
+// const users = await db(`SELECT * FROM users`)
+
+// const message = await db(`ALTER TABLE users ADD COLUMN isAdmin BOOLEAN`)
+const secret = await bcrypt.hash('secret', 10)
+
+console.log(secret)
+// const values = [secret]
+// const message = await db(`INSERT INTO secret (secret) VALUES ($1)`, values)
+// console.log(message.rows) 
 // const query = `DROP TABLE users`;
-const users = await db(`SELECT * FROM users`)
+const users = await db(`SELECT * FROM secret`)
 console.log(users.rows)
 // const queries = await db(query);
-const messages = await db(message);
-const values = ['This is the text messages.', new Date()]
+// const messages = await db(message);
+// const values = ['This is the text messages.', new Date()]
 // const result = await db(
 //   `INSERT INTO messages  (message, date) VALUES(
 //             $1, $2
@@ -43,4 +58,4 @@ const values = ['This is the text messages.', new Date()]
 // console.log(messages.rows);
 // console.log(queries.rows);
 export default db;
- 
+  

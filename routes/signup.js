@@ -13,7 +13,7 @@ signupRouter.post(
     const result = await db(`SELECT * FROM users WHERE email = $1`, values);
     const users = result.rows;
     const user = users[0];
-    console.log(user);
+    // console.log(user);
     if (user) {
 
       throw new Error('Email is already in use. Please use another.');
