@@ -17,7 +17,6 @@ export const sendSecret = async (req, res) => {
       values
     );
     res.redirect('/');
-    // res.redirect('/');
   } catch (error) {
     console.error('Error adding the message', error);
   }

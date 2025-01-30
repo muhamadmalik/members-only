@@ -1,3 +1,4 @@
+import { isAdmin } from '../auth/authMiddleware.js';
 import db from '../db/db.js';
 export const sendMessage = async (req, res) => {
   try {
