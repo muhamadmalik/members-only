@@ -2,7 +2,7 @@ import db from '../db/db.js';
 import bcrypt from 'bcrypt';
 
 export const renderSignUp = (req, res) => {
-  res.render('sign-up-form');
+  res.render('sign-up-form', { emailError: '' , user: req.user});
 };
 
 export const signUp = async (req, res) => {
@@ -17,7 +17,7 @@ export const signUp = async (req, res) => {
                 ) `,
       values
     );
-    res.send('form submitted correctly.');
+    res.redirect('/login');
   } catch (error) {
     console.error('Error signing up the user.', error);
   }

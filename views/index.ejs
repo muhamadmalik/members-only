@@ -1,41 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Messages | ArbiSoft</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Advice Board</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+
+
+            colors: {
+ 'text': '#180a0f',
+ 'background': '#fbf0f4',
+ 'primary': '#d43a72',
+ 'secondary': '#f08eb1',
+ 'accent': '#f34886',
+},
+
+
+
+
+
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50 font-sans">
-    <%- include('partials/navbar') %>
-
-    <main class="container mx-auto px-4 py-8 min-h-[calc(100vh-88px-140px)]">       
-       <div class="max-w-4xl mx-auto">
-            <h1 class="text-3xl font-bold text-gray-800 mb-6">Messages</h1>
-            
-            <%- include('partials/message-list') %>
-
-            <% if (user) { %>
-                <%- include('partials/new-message-form') %>
-            <% } %>
+  </head>
+  <body class="bg-background min-h-screen text-text">
+    <!-- Header -->
+    <header class="p-4 bg-background text-text border-b border-primary/10">
+      <div class="container mx-auto flex items-center justify-between">
+        <div
+          class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+        >
+          Advice Board
         </div>
+        <nav class="flex items-center gap-6">
+          <a href="#" class="text-sky hover:text-pacific">Write a advice</a>
+          <a href="#" class="text-sky hover:text-pacific">My advices</a>
+          <div class="flex items-center gap-2">
+            <img
+              src="/profile_pic.jpg"
+              alt="Profile"
+              class="w-8 h-8 rounded-full"
+            />
+            <span class="text-sky">Become a member</span>
+          </div>
+          <button class="text-sky hover:text-pacific">Settings</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container mx-auto py-8 max-w-4xl">
+      <div class="p-4 text-white my-4 rounded-lg bg-primary">
+        <div class="container mx-auto flex items-center justify-between">
+          <div class="flex gap-8">
+            <div class="flex items-center gap-2">
+              <span class="">You logged in:</span>
+              <span class="font-bold">5 times</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="">You visited: </span>
+              <span class="font-bold">26 times</span>
+            </div>
+          </div>
+          <div
+            class="flex items-center gap-2 bg-primary text-background rounded-md p-1 text-background"
+          >
+          <span>Sort by:</span>
+          <select class="rounded px-2 py-1 bg-primary" onchange="window.location.href=this.value;">
+            <option value="/?sortby=ASC">Newest</option>
+            <option value="/?sortby=DESC">Oldest</option>
+          </select>
+          
+          </div>
+        </div>
+      </div>
+      <% const colors = ["bg-primary"];%> 
+      <% messages.forEach((message, index) => { const bgClass = colors[index% colors.length]; %>
+      <div class="<%= bgClass %> rounded-md max-w-4xl">
+        <div class="rounded-lg mb-4 p-6 text-background">
+          <div class="flex items-center gap-4 mb-4">
+            <img
+              src="/profile_pic.jpg"
+              alt="Avatar"
+              class="w-12 h-12 rounded-full"
+            />
+            <h2 class="text-sky font-medium"><%= message.name %></h2>
+          </div>
+          <p class="text-non-photo mb-4"><%= message.message %></p>
+          <div class="text-non-photo-2/60 text-sm">
+            <p>From: <%= message.name %></p>
+            <p>Sent: <%= message.date %></p>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+<div class="flex items-center justify-center space-x-2 my-8">
+    <% if (currentPage > 1) { %>
+        <a href="?page=<%= currentPage - 1 %>&sortby=<%= sortBy %>" 
+           class="px-4 py-2 rounded-md bg-secondary text-background hover:bg-primary transition-colors">
+            Previous
+        </a>
+    <% } %>
+
+    <% for(let i = 1; i <= totalPages; i++) { %>
+        <a href="?page=<%= i %>&sortby=<%= sortBy %>" 
+           class="px-4 py-2 rounded-md <%= currentPage === i ? 'bg-primary text-background' : 'bg-secondary/20 text-primary hover:bg-secondary/30' %> transition-colors">
+            <%= i %>
+        </a>
+    <% } %>
+
+    <% if (currentPage < totalPages) { %>
+        <a href="?page=<%= currentPage + 1 %>&sortby=<%= sortBy %>" 
+           class="px-4 py-2 rounded-md bg-secondary text-background hover:bg-primary transition-colors">
+            Next
+        </a>
+    <% } %>
+</div>
     </main>
-
-    <%- include('partials/footer') %>
-
-    <script src="/js/main.js"></script>
-</body>
+  </body>
 </html>
-

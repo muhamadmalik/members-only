@@ -3,13 +3,13 @@
     <div class="flex justify-between items-center py-4">
       <a href="/" class="text-xl font-bold text-gray-800">Chat-Board</a>
       <div class="flex items-center space-x-4">
-        <% if (user) { %>
+    <% if (user) { %>
         <div class="flex items-center space-x-4">
           <div class="text-right">
             <p class="text-sm font-medium text-gray-900">
-              <%= user.firstname %> <%= user.lastname %>
+              <%= user?.firstname %> <%= user?.lastname %>
             </p>
-            <p class="text-xs text-gray-500"><%= user.email %></p>
+            <p class="text-xs text-gray-500"><%= user?.email %></p>
           </div>
           <a
             href="/logout"

@@ -38,25 +38,19 @@ const db = async (query, params) => {
 
 // const message = await db(`ALTER TABLE users ADD COLUMN isAdmin BOOLEAN`)
 const secret = await bcrypt.hash('secret', 10)
-
 console.log(secret)
 // const values = [secret]
 // const message = await db(`INSERT INTO secret (secret) VALUES ($1)`, values)
 // console.log(message.rows) 
 // const query = `DROP TABLE users`;
-// const users = await db(`UPDATE users SET isadmin = false WHERE id != 12`) 
+// const users = await db(`UPDATE messages SET user_id = 15 WHERE id != 2`) 
 // console.log(users.rows)
-const userss = await db(`SELECT * FROM users`) 
-console.log(userss.rows)
+const userss = await db(`SELECT * FROM messages ORDER BY id ASC LIMIT 5 OFFSET 0`) 
+// console.log(userss.rows)
 // const queries = await db(query);
 // const messages = await db(message);
-// const values = ['This is the text messages.', new Date()]
-// const result = await db(
-//   `INSERT INTO messages  (message, date) VALUES(
-//             $1, $2
-//             ) `,
-//   values
-// );
+const values = ['This is the text messages.', new Date()]
+// const result = await db(`INSERT INTO messages  (message, date) VALUES ($1, $2)`, values );
 // console.log(messages.rows);
 // console.log(queries.rows);
 export default db;

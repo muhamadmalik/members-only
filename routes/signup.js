@@ -13,18 +13,21 @@ signupRouter.post(
     const result = await db(`SELECT * FROM users WHERE email = $1`, values);
     const users = result.rows;
     const user = users[0];
-    // console.log(user);
     if (user) {
-
       throw new Error('Email is already in use. Please use another.');
     }
   }),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+     return  res.render('sign-up-form', {
+      user: {},
+        emailError:
+          'Email is already in use. Please try again with different email.'
+      });
+      // return res.status(400).json({ errors: errors.array() });
     }
-    next()
+    next();
   },
   signUp
 );
