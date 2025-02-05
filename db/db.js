@@ -1,6 +1,6 @@
 import pg from 'pg';
 import 'dotenv/config';
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
 const { Pool } = pg;
 
 const pool = new Pool({
@@ -28,30 +28,32 @@ const db = async (query, params) => {
 //     date TIMESTAMP,
 //     user_id INT)
 //     `);
+// const query = await db(`CREATE TABLE counter (
+  // id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, visits INT,logins INT)`);
 // const query = await db(`CREATE TABLE secret (
 //     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 //     secret TEXT)
 //     `);
 // const query = `DELETE FROM messages`;
-// const message = await db(`DELETE FROM secret WHERE id != 14`)
-// const users = await db(`SELECT * FROM users`)
-
-// const message = await db(`ALTER TABLE users ADD COLUMN isAdmin BOOLEAN`)
-const secret = await bcrypt.hash('secret', 10)
-console.log(secret)
-// const values = [secret]
-// const message = await db(`INSERT INTO secret (secret) VALUES ($1)`, values)
-// console.log(message.rows) 
+// const message = await db(`DELETE FROM counter WHERE id != 1`)
+const users = await db(`SELECT * FROM counter`);
+console.log(users.rows)
+// const message = await db(`ALTER TABLE counter ADD COLUMN user_id INT`)
+const secret = await bcrypt.hash('secret', 10);
+const valuess = [0, 0]
+// const message = await db(`INSERT INTO counter (visits, logins) VALUES ($1, $2)`, valuess)
+// console.log(message.rows)
 // const query = `DROP TABLE users`;
-// const users = await db(`UPDATE messages SET user_id = 15 WHERE id != 2`) 
+// const users = await db(`UPDATE messages SET user_id = 15 WHERE id != 2`)
 // console.log(users.rows)
-const userss = await db(`SELECT * FROM messages ORDER BY id ASC LIMIT 5 OFFSET 0`) 
+const userss = await db(
+  `SELECT * FROM messages ORDER BY id ASC LIMIT 5 OFFSET 0`
+);
 // console.log(userss.rows)
 // const queries = await db(query);
 // const messages = await db(message);
-const values = ['This is the text messages.', new Date()]
+const values = ['This is the text messages.', new Date()];
 // const result = await db(`INSERT INTO messages  (message, date) VALUES ($1, $2)`, values );
 // console.log(messages.rows);
 // console.log(queries.rows);
 export default db;
-  
