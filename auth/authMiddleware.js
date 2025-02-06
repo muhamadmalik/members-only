@@ -13,3 +13,4 @@ export function isAdmin(req, res, next) {
   res.status(403).json({ message: 'You are not a member yet.' });
 }
 export default isAuthenticated;
+

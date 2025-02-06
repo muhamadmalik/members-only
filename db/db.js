@@ -36,24 +36,38 @@ const db = async (query, params) => {
 //     `);
 // const query = `DELETE FROM messages`;
 // const message = await db(`DELETE FROM counter WHERE id != 1`)
-const users = await db(`SELECT * FROM counter`);
-console.log(users.rows)
+// const users = await db(`SELECT * FROM users`); 
+// const users = await db(`SELECT messages.id AS message_id, message, date, counter.visits AS user_visits, 
+//   counter.logins AS user_logins, firstname AS user_name FROM messages JOIN users ON users.id = messages.user_id JOIN counter ON users.id = counter.user_id ORDER BY messages.id ASC LIMIT 5 OFFSET 0`,); 
+// console.log(users.rows) 
+const counter = await db(`SELECT users.id , email, counter.logins AS user_logins, counter.visits AS user_visits FROM users LEFT JOIN counter ON users.id = counter.user_id`); 
+// console.log(counter.rows)
 // const message = await db(`ALTER TABLE counter ADD COLUMN user_id INT`)
-const secret = await bcrypt.hash('secret', 10);
-const valuess = [0, 0]
+// const secret = await bcrypt.hash('secret', 10);
+// const valuess = [0, 0]
+const values = [17];
+console.log(values)
+// `SELECT users.id , email, counter.logins AS user_logins, counter.visits AS user_visits FROM users JOIN counter ON users.id = counter.user_id WHERE users.id = 1`
+const resultt = await db(
+  `SELECT users.id , email, counter.logins AS user_logins, counter.visits AS user_visits, users.isAdmin AS isAdmin FROM users LEFT JOIN counter ON users.id = counter.user_id `
+);
+// const users = resultt.rows; 
+// console.log(users)
 // const message = await db(`INSERT INTO counter (visits, logins) VALUES ($1, $2)`, valuess)
 // console.log(message.rows)
 // const query = `DROP TABLE users`;
 // const users = await db(`UPDATE messages SET user_id = 15 WHERE id != 2`)
 // console.log(users.rows)
 const userss = await db(
-  `SELECT * FROM messages ORDER BY id ASC LIMIT 5 OFFSET 0`
+  `SELECT * FROM messages ORDER BY id ASC LIMIT 5 OFFSET 0` 
 );
 // console.log(userss.rows)
 // const queries = await db(query);
 // const messages = await db(message);
-const values = ['This is the text messages.', new Date()];
+// const values = ['This is the text messages.', new Date()];
+const valuess = [5, 4, 14];
 // const result = await db(`INSERT INTO messages  (message, date) VALUES ($1, $2)`, values );
+// const result = await db(`INSERT INTO counter  (visits, logins, user_id) VALUES ($1, $2, $3)`, values );
 // console.log(messages.rows);
 // console.log(queries.rows);
 export default db;

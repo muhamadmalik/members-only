@@ -122,11 +122,11 @@
             <div class="flex flex-col sm:flex-row gap-4 sm:gap-8">
               <div class="flex items-center gap-2">
                 <span>You logged in:</span>
-                <span class="font-bold">5 times</span>
+                <span class="font-bold"><%=user.user_logins %> times</span>
               </div>
               <div class="flex items-center gap-2">
                 <span>You visited:</span>
-                <span class="font-bold"><%= newVisitCount %> times</span>
+                <span class="font-bold"><%=user.user_visits%> times</span>
               </div>
             </div>
           <% } else { %>
