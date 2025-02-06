@@ -27,7 +27,7 @@ export const renderIndex = async (req, res) => {
       ? req.query.sortby
       : 'ASC';
     const result = await db(
-      `SELECT messages.id AS message_id, message, date, counter.visits AS user_visits, counter.logins AS user_logins, email AS name FROM messages JOIN users ON users.id = messages.user_id JOIN counter ON users.id = counter.user_id ORDER BY users.id ${sortBy} LIMIT $1 OFFSET $2`,
+      `SELECT messages.id AS message_id, messages.title AS message_title, message, date, counter.visits AS user_visits, counter.logins AS user_logins, email AS name FROM messages JOIN users ON users.id = messages.user_id JOIN counter ON users.id = counter.user_id ORDER BY users.id ${sortBy} LIMIT $1 OFFSET $2`,
       values
     );
     req.user ? increaseVisits(req, res) : '';

@@ -2,10 +2,10 @@ import { isAdmin } from '../auth/authMiddleware.js';
 import db from '../db/db.js';
 export const sendMessage = async (req, res) => {
   try {
-    const values = [req.body.message, new Date(), req.user.id];
+    const values = [req.body.message, new Date(), req.user.id, req.body.title];
     console.log(req.user.id)
     const result = await db(
-      `INSERT INTO messages (message, date, user_id ) VALUES ($1, $2, $3)`,
+      `INSERT INTO messages (message, date, user_id, title ) VALUES ($1, $2, $3, $4)`,
       values
     );
     const messages = result.rows;

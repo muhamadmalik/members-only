@@ -28,22 +28,20 @@ passport.use(
         const values = [email];
         const result = await db(`SELECT * FROM users WHERE email = $1`, values);
         const users = result.rows;
-        console.log(users)
+        console.log(users);
         const user = users[0];
-        // console.log('this is being executed.');
-        // console.log(user);
         if (!users) {
           return done(null, false, {
             message: 'Entered Email was Incorrect, Please try again.',
           });
         }
-        // const match = await bcrypt.compare(password, user.password);
-        // if (!match) {
-        //   return done(null, false, {
-        //     message: 'The password is Incorrect, Please try again.',
-        //   });
-        // }
-        // console.log('authentication successfull.');
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+          return done(null, false, {
+            message: 'The password is Incorrect, Please try again.',
+          });
+        }
+        console.log('authentication successfull.');
         return done(null, user);
       } catch (error) {
         console.error('Error during authentication:', error);
@@ -67,7 +65,6 @@ passport.deserializeUser(async (id, done) => {
     );
     const users = result.rows;
 
-  
     const user = users[0];
     console.log(user);
     done(null, user);
@@ -77,18 +74,20 @@ passport.deserializeUser(async (id, done) => {
 });
 
 loginRouter.get('/', (req, res) => {
-  res.render('login');
+  res.render('login', { passwordError: '' });
 });
 
-
 loginRouter.post('/', (req, res, next) => {
-  console.log(req.body)
   passport.authenticate('local', async (err, user, info) => {
     if (err) {
+      console.log('what about this here. ? ');
       return next(err);
     }
     if (!user) {
-      return res.redirect('/login');
+      console.log('this is the for the user not being here. ');
+      return res.render('login', {
+        passwordError: 'Wrong Password! Try Again.',
+      });
     }
     req.logIn(user, async (err) => {
       if (err) {

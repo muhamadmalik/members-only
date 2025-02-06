@@ -35,14 +35,16 @@ const db = async (query, params) => {
 //     secret TEXT)
 //     `);
 // const query = `DELETE FROM messages`;
-// const message = await db(`DELETE FROM counter WHERE id != 1`)
-// const users = await db(`SELECT * FROM users`); 
+// const message = await db(`DELETE FROM users WHERE id != 0`)
+const users = await db(`SELECT * FROM messages`); 
+console.log(users.rows)
+
 // const users = await db(`SELECT messages.id AS message_id, message, date, counter.visits AS user_visits, 
 //   counter.logins AS user_logins, firstname AS user_name FROM messages JOIN users ON users.id = messages.user_id JOIN counter ON users.id = counter.user_id ORDER BY messages.id ASC LIMIT 5 OFFSET 0`,); 
 // console.log(users.rows) 
 const counter = await db(`SELECT users.id , email, counter.logins AS user_logins, counter.visits AS user_visits FROM users LEFT JOIN counter ON users.id = counter.user_id`); 
 // console.log(counter.rows)
-// const message = await db(`ALTER TABLE counter ADD COLUMN user_id INT`)
+// const message = await db(`ALTER TABLE messages ADD COLUMN title TEXT`)
 // const secret = await bcrypt.hash('secret', 10);
 // const valuess = [0, 0]
 const values = [17];

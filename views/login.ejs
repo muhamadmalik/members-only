@@ -4,44 +4,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/output.css">
-  <title>Login</title>
+  <title>Login - Advice Board</title>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-  <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
-    <h1 class="text-2xl font-bold text-center mb-6">Login</h1>
-    <form action="/login" method="POST" class="flex flex-col space-y-4">
+<body class="bg-background min-h-screen flex items-center justify-center">
+  <div class="bg-text/85 rounded-lg shadow-lg p-8 w-full max-w-md animate-scale-in">
+    <h1 class="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Login</h1>
+    <form action="/login" method="POST" class="space-y-6">
       <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-        <input 
+        <label for="email" class="block text-sm font-medium text-primary mb-2">Email</label>
+        <input  
           id="email" 
           name="email" 
           type="email" 
           placeholder="Email" 
-          class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          class="w-full p-3 rounded-md border border-secondary/50 bg-background text-text placeholder-text/50 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 ease-in-out"
         />
       </div>
       <div>
-        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <label for="password" class="block text-sm font-medium text-primary mb-2">Password</label>
         <input 
           id="password" 
           name="password" 
           type="password" 
           placeholder="Password" 
-          class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          class="w-full p-3 rounded-md border border-secondary/50 bg-background text-text placeholder-text/50 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 ease-in-out"
         />
+        <% if (locals.passwordError) { %>
+          <p id="passwordError" class="text-accent text-sm mt-2">
+            <%= passwordError %>
+          </p>
+        <% } %>
       </div>
       <button 
         type="submit" 
-        class="w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all"
+        class="w-full bg-primary text-background py-3 rounded-md font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
       >
         Login
       </button>
     </form>
-    <div class="text-center mt-6">
-      <p class="text-sm text-gray-600">Don't have an account?</p>
+    <div class="text-center mt-8">
+      <p class="text-sm text-primary">Don't have an account?</p>
       <a 
         href="/signup" 
-        class="text-blue-500 hover:underline font-medium mt-2 inline-block"
+        class="text-accent hover:text-primary font-medium mt-2 inline-block transition-all duration-300 ease-in-out hover:scale-105"
       >
         Sign Up
       </a>
@@ -49,3 +54,4 @@
   </div>
 </body>
 </html>
+

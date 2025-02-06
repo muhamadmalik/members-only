@@ -10,85 +10,189 @@
         theme: {
           extend: {
             colors: {
-              'text': '#180a0f',
-              'background': '#fbf0f4',
-              'primary': '#d43a72',
-              'secondary': '#f08eb1',
-              'accent': '#f34886',
+              text: '#180a0f',
+              background: '#fbf0f4',
+              primary: '#d43a72',
+              secondary: '#f08eb1',
+              accent: '#f34886',
             },
             transitionProperty: {
-              'height': 'height',
-              'spacing': 'margin, padding',
-            }
+              height: 'height',
+              spacing: 'margin, padding',
+            },
           },
         },
       };
     </script>
     <style>
       @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
       @keyframes slideDown {
-        from { transform: translateY(-10px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
+        from {
+          transform: translateY(-10px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
       }
       @keyframes scaleIn {
-        from { transform: scale(0.9); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
+        from {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
       }
-      .animate-fade-in { animation: fadeIn 0.3s ease-out; }
-      .animate-slide-down { animation: slideDown 0.3s ease-out; }
-      .animate-scale-in { animation: scaleIn 0.3s ease-out; }
+      .animate-fade-in {
+        animation: fadeIn 0.3s ease-out;
+      }
+      .animate-slide-down {
+        animation: slideDown 0.3s ease-out;
+      }
+      .animate-scale-in {
+        animation: scaleIn 0.3s ease-out;
+      }
     </style>
   </head>
   <body class="bg-background min-h-screen text-text flex flex-col items-center">
-    <header class="p-4 bg-background text-text border-b border-primary/10 w-full sticky top-0 z-50 transition-all duration-300 ease-in-out">
+    <header
+      class="p-4 bg-background text-text border-b border-primary/10 w-full sticky top-0 z-50 transition-all duration-300 ease-in-out"
+    >
       <div class="container mx-auto flex items-center justify-between px-4">
-        <div class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent transition-all duration-300 ease-in-out hover:scale-105">
+        <div
+          class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent transition-all duration-300 ease-in-out hover:scale-105"
+        >
           Advice Board
         </div>
         <nav class="hidden lg:flex items-center gap-6">
-          <button id="toggleAdviceFormDesktop" class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105">
+          <button
+            id="toggleAdviceFormDesktop"
+            class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
+          >
             Write Your Advice
           </button>
-          <a href="#" class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105">My advices</a>
+
+          <a
+            href="/membership"
+            class="w-64 px-4 py-2 rounded-md bg-secondary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
+          >
+            Become a Member
+          </a>
+          <a
+            href="#"
+            class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105"
+            >My advices</a
+          >
           <% if (user) { %>
-            <a href="/logout" class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105">
-              Log Off
-            </a>
+          <a
+            href="/logout"
+            class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105"
+          >
+            Log Off
+          </a>
           <% } else { %>
-            <a href="/login" class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105">
-              Log In
-            </a>
+          <a
+            href="/login"
+            class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105"
+          >
+            Log In
+          </a>
           <% } %>
-                    <button class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105">Settings</button>
+          <button
+            class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105"
+          >
+            Settings
+          </button>
         </nav>
-        <button id="burgerButton" class="lg:hidden text-primary hover:text-accent p-2 transition-all duration-300 ease-in-out hover:scale-110">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <button
+          id="burgerButton"
+          class="lg:hidden text-primary hover:text-accent p-2 transition-all duration-300 ease-in-out hover:scale-110"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
         </button>
-        <div id="mobileMenu" class="hidden fixed inset-0 bg-background/95 z-40 transition-opacity duration-300 ease-in-out opacity-0">
+        <div
+          id="mobileMenu"
+          class="hidden fixed inset-0 bg-background/95 z-40 transition-opacity duration-300 ease-in-out opacity-0"
+        >
           <div class="flex flex-col items-center justify-center h-full gap-8">
-            <button id="toggleAdviceFormMobile" class="w-64 px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105">
+            <button
+              id="toggleAdviceFormMobile"
+              class="w-64 px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
+            >
               Write Your Advice
             </button>
-            <a href="#" class="text-primary hover:text-accent text-lg transition-all duration-300 ease-in-out hover:scale-105">My advices</a>
+            <a
+            href="/membership"
+            class="w-64 px-4 py-2 rounded-md bg-secondary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
+          >
+            Become a Member
+          </a>
+            <a
+              href="#"
+              class="text-primary hover:text-accent text-lg transition-all duration-300 ease-in-out hover:scale-105"
+              >My advices</a
+            >
             <% if (user) { %>
-              <a href="/logout" class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105">
-                Log Off
-              </a>
+            <a
+              href="/logout"
+              class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105"
+            >
+              Log Off
+            </a>
             <% } else { %>
-              <a href="/login" class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105">
-                Log In
-              </a>
+            <a
+              href="/login"
+              class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105"
+            >
+              Log In
+            </a>
             <% } %>
-            
-            <button class="text-primary hover:text-accent text-lg transition-all duration-300 ease-in-out hover:scale-105">Settings</button>
-            <button id="closeMobileMenu" class="absolute top-4 right-4 text-primary hover:text-accent p-2 transition-all duration-300 ease-in-out hover:scale-110">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+
+            <button
+              class="text-primary hover:text-accent text-lg transition-all duration-300 ease-in-out hover:scale-105"
+            >
+              Settings
+            </button>
+            <button
+              id="closeMobileMenu"
+              class="absolute top-4 right-4 text-primary hover:text-accent p-2 transition-all duration-300 ease-in-out hover:scale-110"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -98,17 +202,55 @@
 
     <main class="container mx-auto py-8 px-4 max-w-5xl w-full">
       <div class="mb-8">
-        <div id="adviceFormContainer" class="mt-4 hidden transition-all duration-300 ease-in-out">
-          <form action="/message/" method="POST" class="p-4 bg-secondary rounded-md animate-slide-down">
+        <div
+          id="adviceFormContainer"
+          class="mt-4 hidden transition-all duration-300 ease-in-out"
+        >
+          <form
+            action="/message/"
+            method="POST"
+            class="p-4 bg-secondary rounded-md animate-slide-down"
+          >
             <div class="mb-4">
-              <label for="adviceText" class="block text-background font-medium mb-2">Your Advice:</label>
-              <textarea id="adviceText" name="message" rows="4" class="w-full p-2 rounded-md border border-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 ease-in-out" placeholder="Write your advice here..."></textarea>
+              <label
+                for="adviceTitle"
+                class="block text-background font-medium mb-2"
+                >Title:</label
+              >
+              <input
+                type="text"
+                id="adviceTitle"
+                name="title"
+                class="w-full p-2 rounded-md border border-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 ease-in-out"
+                placeholder="Enter a title for your advice"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                for="adviceText"
+                class="block text-background font-medium mb-2"
+                >Your Advice:</label
+              >
+              <textarea
+                id="adviceText"
+                name="message"
+                rows="4"
+                class="w-full p-2 rounded-md border border-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 ease-in-out"
+                placeholder="Write your advice here..."
+              ></textarea>
             </div>
             <div class="flex justify-end gap-2">
-              <button type="button" onclick="closeAdviceForm()" class="px-4 py-2 rounded-md bg-background text-primary hover:bg-background/90 transition-all duration-300 ease-in-out hover:scale-105">
+              <button
+                type="button"
+                onclick="closeAdviceForm()"
+                class="px-4 py-2 rounded-md bg-background text-primary hover:bg-background/90 transition-all duration-300 ease-in-out hover:scale-105"
+              >
                 Cancel
               </button>
-              <button type="submit" class="px-4 py-2 rounded-md bg-primary text-background hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105">
+              <button
+                type="submit"
+                class="px-4 py-2 rounded-md bg-primary text-background hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
+              >
                 Submit Advice
               </button>
             </div>
@@ -117,28 +259,35 @@
       </div>
 
       <div class="p-4 text-white my-4 rounded-lg bg-primary animate-fade-in">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+        >
           <% if (user) { %>
-            <div class="flex flex-col sm:flex-row gap-4 sm:gap-8">
-              <div class="flex items-center gap-2">
-                <span>You logged in:</span>
-                <span class="font-bold"><%=user.user_logins %> times</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span>You visited:</span>
-                <span class="font-bold"><%=user.user_visits%> times</span>
-              </div>
+          <div class="flex flex-col sm:flex-row gap-4 sm:gap-8">
+            <div class="flex items-center gap-2">
+              <span>You logged in:</span>
+              <span class="font-bold"><%=user.user_logins %> times</span>
             </div>
+            <div class="flex items-center gap-2">
+              <span>You visited:</span>
+              <span class="font-bold"><%=user.user_visits%> times</span>
+            </div>
+          </div>
           <% } else { %>
-            <a href="/login">
-              <div class="p-4 bg-secondary rounded-md text-background">
-                <p class="text-center">Log in to see your visit statistics.</p>
-              </div>
-            </a>
+          <a href="/login">
+            <div class="p-4 bg-secondary rounded-md text-background">
+              <p class="text-center">Log in to see your visit statistics.</p>
+            </div>
+          </a>
           <% } %>
-          <div class="flex items-center gap-2 bg-secondary text-background rounded-md p-1">
+          <div
+            class="flex items-center gap-2 bg-secondary text-background rounded-md p-1"
+          >
             <span>Sort by:</span>
-            <select class="rounded px-2 py-1 bg-secondary transition-all duration-300 ease-in-out" onchange="window.location.href=this.value;">
+            <select
+              class="rounded px-2 py-1 bg-secondary transition-all duration-300 ease-in-out"
+              onchange="window.location.href=this.value;"
+            >
               <option value="/?sortby=ASC">Newest</option>
               <option value="/?sortby=DESC">Oldest</option>
             </select>
@@ -148,62 +297,78 @@
 
       <div class="grid gap-4">
         <% messages.forEach((message, index) => { %>
-          <div class="bg-text/85 rounded-lg animate-scale-in" style="animation-delay: 
-          <%=index * 100 %>ms
-          ">
-            <div class="p-4 sm:p-6">
-              <div class="flex justify-center mb-4">
-                <div class="rounded-full p-0.5 bg-gradient-to-r from-primary to-accent">
-                  <img src="/profile_pic.jpg" alt="Avatar" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-[#1a1b26] transition-transform duration-300 ease-in-out hover:scale-105" />
-                </div>
-              </div>
-
-              <div class="flex items-center justify-center gap-4 mb-6 text-white">
-                <div class="h-[1px] flex-1 bg-primary/30"></div>
-                <h2 class="font-medium text-base sm:text-lg"><%= message.name %></h2>
-                <div class="h-[1px] flex-1 bg-primary/30"></div>
-              </div>
-
-              <p class="text-primary text-center mb-6 text-sm sm:text-base"><%= message.message %></p>
-
-              <div class="text-white text-xs sm:text-sm space-y-1">
-                <p>From: <%= message.name %></p>
-                <p>Sent: <%= message.date %></p>
+        <div
+          class="bg-text/85 rounded-lg animate-scale-in"
+          style="animation-delay: <%=index%> * 100 ms"
+        >
+          <div class="p-4 sm:p-6">
+            <div class="flex justify-center mb-4">
+              <div
+                class="rounded-full p-0.5 bg-gradient-to-r from-primary to-accent"
+              >
+                <img
+                  src="/profile_pic.jpg"
+                  alt="Avatar"
+                  class="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-[#1a1b26] transition-transform duration-300 ease-in-out hover:scale-105"
+                />
               </div>
             </div>
+
+            <div class="flex items-center justify-center gap-4 mb-6 text-white">
+              <div class="h-[1px] flex-1 bg-primary/30"></div>
+              <h2 class="font-medium text-base sm:text-lg">
+                <%= message.message_title %>
+              </h2>
+              <div class="h-[1px] flex-1 bg-primary/30"></div>
+            </div>
+
+            <p class="text-primary text-center mb-6 text-sm sm:text-base">
+              <%= message.message %>
+            </p>
+
+            <div class="text-white text-xs sm:text-sm space-y-1">
+              <p>From: <%= message.name %></p>
+              <p>Sent: <%= message.date %></p>
+            </div>
           </div>
+        </div>
         <% }); %>
       </div>
-      <div class="flex flex-wrap items-center justify-center gap-2 my-8 animate-fade-in">
+      <div
+        class="flex flex-wrap items-center justify-center gap-2 my-8 animate-fade-in"
+      >
         <% if (currentPage > 1) { %>
-          <a href="?page=<%= currentPage - 1 %>&sortby=<%= sortBy %>" 
-             class="px-3 sm:px-4 py-2 rounded-md bg-secondary text-background hover:bg-primary transition-all duration-300 ease-in-out hover:scale-105 text-sm sm:text-base">
-            Previous
-          </a>
+        <a
+          href="?page=<%= currentPage - 1 %>&sortby=<%= sortBy %>"
+          class="px-3 sm:px-4 py-2 rounded-md bg-secondary text-background hover:bg-primary transition-all duration-300 ease-in-out hover:scale-105 text-sm sm:text-base"
+        >
+          Previous
+        </a>
         <% } %>
 
         <div class="flex flex-wrap items-center justify-center gap-2">
           <% for (let i = 1; i <= totalPages; i++) { %>
-            <a href="?page=<%= i %>&sortby=<%= sortBy %>" 
-               class="w-8 sm:w-10 h-8 sm:h-10 flex items-center justify-center rounded-md 
-                      <%= currentPage === i ? 'bg-primary text-background' : 'bg-secondary/20 text-primary hover:bg-secondary/30' %> 
-                      transition-all duration-300 ease-in-out hover:scale-105 text-sm sm:text-base">
-              <%= i %>
-            </a>
+          <a
+            href="?page=<%= i %>&sortby=<%= sortBy %>"
+            class="w-8 sm:w-10 h-8 sm:h-10 flex items-center justify-center rounded-md <%= currentPage === i ? 'bg-primary text-background' : 'bg-secondary/20 text-primary hover:bg-secondary/30' %> transition-all duration-300 ease-in-out hover:scale-105 text-sm sm:text-base"
+          >
+            <%= i %>
+          </a>
           <% } %>
         </div>
 
         <% if (currentPage < totalPages) { %>
-          <a href="?page=<%= currentPage + 1 %>&sortby=<%= sortBy %>" 
-             class="px-3 sm:px-4 py-2 rounded-md bg-secondary text-background hover:bg-primary transition-all duration-300 ease-in-out hover:scale-105 text-sm sm:text-base">
-            Next
-          </a>
+        <a
+          href="?page=<%= currentPage + 1 %>&sortby=<%= sortBy %>"
+          class="px-3 sm:px-4 py-2 rounded-md bg-secondary text-background hover:bg-primary transition-all duration-300 ease-in-out hover:scale-105 text-sm sm:text-base"
+        >
+          Next
+        </a>
         <% } %>
       </div>
     </main>
 
     <script>
-      // Toggle functions for advice form
       function toggleAdviceForm() {
         const formContainer = document.getElementById('adviceFormContainer');
         formContainer.classList.toggle('hidden');
@@ -220,8 +385,12 @@
       const burgerButton = document.getElementById('burgerButton');
       const mobileMenu = document.getElementById('mobileMenu');
       const closeMobileMenu = document.getElementById('closeMobileMenu');
-      const toggleAdviceFormDesktop = document.getElementById('toggleAdviceFormDesktop');
-      const toggleAdviceFormMobile = document.getElementById('toggleAdviceFormMobile');
+      const toggleAdviceFormDesktop = document.getElementById(
+        'toggleAdviceFormDesktop'
+      );
+      const toggleAdviceFormMobile = document.getElementById(
+        'toggleAdviceFormMobile'
+      );
 
       function toggleMobileMenu() {
         mobileMenu.classList.toggle('hidden');
@@ -239,17 +408,20 @@
 
       // Close mobile menu on window resize if it's open
       window.addEventListener('resize', () => {
-        if (window.innerWidth >= 1024 && !mobileMenu.classList.contains('hidden')) {
+        if (
+          window.innerWidth >= 1024 &&
+          !mobileMenu.classList.contains('hidden')
+        ) {
           toggleMobileMenu();
         }
       });
 
       // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
           document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+            behavior: 'smooth',
           });
         });
       });
