@@ -8,5 +8,5 @@ import isAuthenticated, { isAdmin } from '../auth/authMiddleware.js';
 const messageRouter = express();
 
 messageRouter.post('/', isAuthenticated, sendMessage);
-messageRouter.post('/delete-message/:id', isAuthenticated, isAdmin, deleteMessage);
+messageRouter.post('/delete/:id', isAuthenticated, isAdmin, deleteMessage);
 export default messageRouter;

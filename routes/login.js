@@ -28,20 +28,19 @@ passport.use(
         const values = [email];
         const result = await db(`SELECT * FROM users WHERE email = $1`, values);
         const users = result.rows;
-        console.log(users);
         const user = users[0];
         if (!users) {
           return done(null, false, {
             message: 'Entered Email was Incorrect, Please try again.',
           });
+        } else if (user) {
+          const match = await bcrypt.compare(password, user.password);
+          if (!match) {
+            return done(null, false, {
+              message: 'The password is Incorrect, Please try again.',
+            });
+          }
         }
-        const match = await bcrypt.compare(password, user.password);
-        if (!match) {
-          return done(null, false, {
-            message: 'The password is Incorrect, Please try again.',
-          });
-        }
-        console.log('authentication successfull.');
         return done(null, user);
       } catch (error) {
         console.error('Error during authentication:', error);
@@ -52,7 +51,6 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  // console.log('Serializing user:', user.id);
   done(null, user.id);
 });
 passport.deserializeUser(async (id, done) => {
@@ -80,14 +78,12 @@ loginRouter.get('/', (req, res) => {
 loginRouter.post('/', (req, res, next) => {
   passport.authenticate('local', async (err, user, info) => {
     if (err) {
-      console.log('what about this here. ? ');
       return next(err);
     }
     if (!user) {
-      console.log('this is the for the user not being here. ');
       return res.render('login', {
         passwordError: 'Wrong Password! Try Again.',
-      }); 
+      });
     }
     req.logIn(user, async (err) => {
       if (err) {
@@ -98,6 +94,6 @@ loginRouter.post('/', (req, res, next) => {
       return res.redirect('/');
     });
   })(req, res, next);
-}); 
+});
 
 export default loginRouter;

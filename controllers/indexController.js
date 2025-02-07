@@ -31,24 +31,13 @@ export const renderIndex = async (req, res) => {
       values
     );
     req.user ? increaseVisits(req, res) : '';
-    // console.log(result.rows)
-    // console.log(req.user);
-    // const count = await db(`SELECT * FROM counter WHERE user_id = $1`, [2]);
-    // const count = await db(`SELECT * FROM users`);
-    // const counts = count.rows;
-    // console.log(counts);
-    // const loginCount = counts[0].logins || 0;
-    // const visitCount = counts[0].visits || 0;
-    // console.log(visitCount);
+   
     const Messages = await db(`SELECT COUNT(*) FROM messages`);
     const totalMessages = Messages.rows[0].count;
     const totalPages = Math.ceil(totalMessages / limit, 10);
     const messages = result.rows;
     console.log(req.user);
-    // const newVisitCount = visitCount + 1;
-    // const cont = await db(`UPDATE counter SET visits = $1  WHERE id = 1`, [
-    //   newVisitCount
-    // ]);
+    console.log(messages)
     res.render('index', {
       messages,
       user: req.user,

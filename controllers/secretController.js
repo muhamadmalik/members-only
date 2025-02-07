@@ -8,7 +8,7 @@ export const sendSecret = async (req, res) => {
     const match = await bcrypt.compare(req.body.secret, secret);
     if (!match) {
       return res.render('membership', {
-        message: { text: 'wrong code buddy', type: 'error' },
+        message: { text: 'wrong code buddy', type: 'error',},
       });
     }
     const values = [match, req.user.id];

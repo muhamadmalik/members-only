@@ -64,129 +64,9 @@
       }
     </style>
   </head>
-  <body class="bg-background min-h-screen text-text flex flex-col items-center">
-    <header
-      class="p-4 bg-background text-text border-b border-primary/10 w-full sticky top-0 z-50 transition-all duration-300 ease-in-out"
-    >
-      <div class="container mx-auto flex items-center justify-between px-4">
-        <div
-          class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent transition-all duration-300 ease-in-out hover:scale-105"
-        >
-          Advice Board
-        </div>
-        <nav class="hidden lg:flex items-center gap-6">
-          <% if(user) { %>
-
-          <button
-            id="toggleAdviceFormDesktop"
-            class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
-          >
-            Write Your Advice
-          </button>
-
-          <a
-            href="/membership"
-            class=" px-4 text-center py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
-          >
-            Become a Member
-          </a>
-          <%} else { %>
-          <div></div>
-          <%}%> <% if (user) { %>
-          <a
-            href="/logout"
-            class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
-            >
-            Log Off
-          </a>
-          <% } else { %>
-          <a
-            href="/login"
-            class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
-            >
-            Log In
-          </a>
-          <% } %>
-        </nav>
-        <button
-          id="burgerButton"
-          class="lg:hidden text-primary hover:text-accent p-2 transition-all duration-300 ease-in-out hover:scale-110"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
-        <div
-          id="mobileMenu"
-          class="hidden fixed inset-0 bg-background/95 z-40 transition-opacity duration-300 ease-in-out opacity-0"
-        >
-          <div class="flex flex-col items-center justify-center h-full gap-8">
-            <% if(user) { %>
-            <button
-              id="toggleAdviceFormDesktop"
-              class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
-            >
-              Write Your Advice
-            </button>
-            <a
-              href="/membership"
-              class=" px-4 text-center py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
-            >
-              Become a Member
-            </a>
-            <%} else { %>
-            <div></div>
-            <%}%> <% if (user) { %>
-            <a
-              href="/logout"
-              class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
-            >
-              Log Off
-            </a>
-            <% } else { %>
-            <a
-              href="/login"
-              class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
-            >
-              Log In
-            </a>
-            <% } %>
-            <button
-              id="closeMobileMenu"
-              class="absolute top-4 right-4 text-primary hover:text-accent p-2 transition-all duration-300 ease-in-out hover:scale-110"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <main class="container mx-auto py-8 px-4 max-w-5xl w-full">
+  <body class="bg-background text-text flex flex-col items-center w-full">
+    <%- include('partials/navbar') %>
+    <main class="container min-h-screen mx-auto py-8 px-4 max-w-5xl w-full">
       <div class="mb-8">
         <div
           id="adviceFormContainer"
@@ -280,26 +160,58 @@
           </div>
         </div>
       </div>
-
       <div class="grid gap-4">
         <% messages.forEach((message, index) => { %>
         <div
           class="bg-text/85 rounded-lg animate-scale-in"
-          style="animation-delay: <%=index%> * 100 ms"
+          style="animation-delay: <%= index * 100 %>ms"
         >
           <div class="p-4 sm:p-6">
-            <div class="flex justify-center mb-4">
-              <div
-                class="rounded-full p-0.5 bg-gradient-to-r from-primary to-accent"
-              >
-                <img
-                  src="/profile_pic.jpg"
-                  alt="Avatar"
-                  class="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-[#1a1b26] transition-transform duration-300 ease-in-out hover:scale-105"
-                />
+            <div class="flex justify-between items-start mb-4">
+              <div class="flex-grow flex justify-center">
+                <div
+                  class="rounded-full p-0.5 bg-gradient-to-r from-primary to-accent"
+                >
+                  <img
+                    src="/profile_pic.jpg"
+                    alt="Avatar"
+                    class="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-[#1a1b26] transition-transform duration-300 ease-in-out hover:scale-105"
+                  />
+                </div>
               </div>
+              <% if (user && user.isadmin) { %>
+              <form
+                action="/message/delete/<%= message.message_id %>"
+                method="POST"
+                class="ml-4"
+              >
+                <input
+                  type="hidden"
+                  name="messageId"
+                  value="<%= message.message_id%>"
+                />
+                <button
+                  type="submit"
+                  class="text-accent hover:text-primary transition-all duration-300 ease-in-out"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    />
+                  </svg>
+                </button>
+              </form>
+              <% } %>
             </div>
-
             <div class="flex items-center justify-center gap-4 mb-6 text-white">
               <div class="h-[1px] flex-1 bg-primary/30"></div>
               <h2 class="font-medium text-base sm:text-lg">
@@ -307,11 +219,9 @@
               </h2>
               <div class="h-[1px] flex-1 bg-primary/30"></div>
             </div>
-
             <p class="text-primary text-center mb-6 text-sm sm:text-base">
               <%= message.message %>
             </p>
-
             <div class="text-white text-xs sm:text-sm space-y-1">
               <p>From: <%= message.name %></p>
               <p>Sent: <%= message.date %></p>
@@ -320,6 +230,7 @@
         </div>
         <% }); %>
       </div>
+
       <div
         class="flex flex-wrap items-center justify-center gap-2 my-8 animate-fade-in"
       >
@@ -353,6 +264,7 @@
         <% } %>
       </div>
     </main>
+    <%- include('partials/footer') %>
 
     <script>
       function toggleAdviceForm() {
@@ -367,7 +279,6 @@
         document.getElementById('adviceFormContainer').classList.add('hidden');
       }
 
-      // Mobile menu functionality
       const burgerButton = document.getElementById('burgerButton');
       const mobileMenu = document.getElementById('mobileMenu');
       const closeMobileMenu = document.getElementById('closeMobileMenu');
@@ -392,7 +303,6 @@
         setTimeout(toggleAdviceForm, 300);
       });
 
-      // Close mobile menu on window resize if it's open
       window.addEventListener('resize', () => {
         if (
           window.innerWidth >= 1024 &&
@@ -402,7 +312,6 @@
         }
       });
 
-      // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
