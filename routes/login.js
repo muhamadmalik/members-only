@@ -87,7 +87,7 @@ loginRouter.post('/', (req, res, next) => {
       console.log('this is the for the user not being here. ');
       return res.render('login', {
         passwordError: 'Wrong Password! Try Again.',
-      });
+      }); 
     }
     req.logIn(user, async (err) => {
       if (err) {
@@ -98,6 +98,6 @@ loginRouter.post('/', (req, res, next) => {
       return res.redirect('/');
     });
   })(req, res, next);
-});
+}); 
 
 export default loginRouter;

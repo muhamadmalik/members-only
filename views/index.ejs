@@ -75,6 +75,8 @@
           Advice Board
         </div>
         <nav class="hidden lg:flex items-center gap-6">
+          <% if(user) { %>
+
           <button
             id="toggleAdviceFormDesktop"
             class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
@@ -84,35 +86,27 @@
 
           <a
             href="/membership"
-            class="w-64 px-4 py-2 rounded-md bg-secondary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
+            class=" px-4 text-center py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
           >
             Become a Member
           </a>
-          <a
-            href="#"
-            class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105"
-            >My advices</a
-          >
-          <% if (user) { %>
+          <%} else { %>
+          <div></div>
+          <%}%> <% if (user) { %>
           <a
             href="/logout"
-            class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105"
-          >
+            class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
+            >
             Log Off
           </a>
           <% } else { %>
           <a
             href="/login"
-            class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105"
-          >
+            class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
+            >
             Log In
           </a>
           <% } %>
-          <button
-            class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105"
-          >
-            Settings
-          </button>
         </nav>
         <button
           id="burgerButton"
@@ -138,44 +132,36 @@
           class="hidden fixed inset-0 bg-background/95 z-40 transition-opacity duration-300 ease-in-out opacity-0"
         >
           <div class="flex flex-col items-center justify-center h-full gap-8">
+            <% if(user) { %>
             <button
-              id="toggleAdviceFormMobile"
-              class="w-64 px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
+              id="toggleAdviceFormDesktop"
+              class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
             >
               Write Your Advice
             </button>
             <a
-            href="/membership"
-            class="w-64 px-4 py-2 rounded-md bg-secondary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
-          >
-            Become a Member
-          </a>
-            <a
-              href="#"
-              class="text-primary hover:text-accent text-lg transition-all duration-300 ease-in-out hover:scale-105"
-              >My advices</a
+              href="/membership"
+              class=" px-4 text-center py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
             >
-            <% if (user) { %>
+              Become a Member
+            </a>
+            <%} else { %>
+            <div></div>
+            <%}%> <% if (user) { %>
             <a
               href="/logout"
-              class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105"
+              class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
             >
               Log Off
             </a>
             <% } else { %>
             <a
               href="/login"
-              class="text-primary hover:text-accent transition-all duration-300 ease-in-out hover:scale-105"
+              class="px-4 py-2 rounded-md bg-primary text-background font-bold hover:bg-accent transition-all duration-300 ease-in-out hover:scale-105"
             >
               Log In
             </a>
             <% } %>
-
-            <button
-              class="text-primary hover:text-accent text-lg transition-all duration-300 ease-in-out hover:scale-105"
-            >
-              Settings
-            </button>
             <button
               id="closeMobileMenu"
               class="absolute top-4 right-4 text-primary hover:text-accent p-2 transition-all duration-300 ease-in-out hover:scale-110"
