@@ -6,12 +6,6 @@ A secure web application where users can sign up, log in, and post messages. The
 - [Overview](#overview)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Setup and Installation](#setup-and-installation)
-- [Usage](#usage)
-- [Troubleshooting](#troubleshooting)
-- [What I Learned](#what-i-learned)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
